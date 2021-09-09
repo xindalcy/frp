@@ -1,0 +1,26 @@
+FROM golang:1.16 AS builder
+RUN go version
+
+RUN go env -w GO111MODULE=on
+RUN go env -w GOPROXY=https://goproxy.io,direct
+
+COPY . /go/src/github.com/xindalcy/frp
+WORKDIR /go/src/github.com/xindalcy/frp
+#RUN set -x && \
+#    go get github.com/golang/dep/cmd/dep && \
+#    dep ensure -v
+
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -ldflags="-w -s" -o bin/frps ./cmd/frps
+
+
+FROM scratch
+COPY --from=builder /go/src/github.com/xindalcy/frp/bin/frps /go/bin/frps
+
+EXPOSE 7001/tcp
+EXPOSE 7500/tcp
+EXPOSE 7001/udp
+EXPOSE 7002/udp
+
+VOLUME /etc/frp/
+
+ENTRYPOINT ["/go/bin/frps","-c","/etc/frp/frps.ini"]
