@@ -1,6 +1,9 @@
 FROM golang:1.16 AS builder
 RUN go version
 
+ARG upx_version=3.96
+ARG GOPROXY
+
 RUN go env -w GO111MODULE=on
 RUN go env -w GOPROXY=https://goproxy.io,direct
 
@@ -12,6 +15,15 @@ WORKDIR /go/src/github.com/xindalcy/frp
 
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -ldflags="-w -s" -o bin/frps ./cmd/frps
 
+
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+# hadolint ignore=DL3008
+RUN apt-get update && apt-get install -y --no-install-recommends xz-utils && \
+  curl -Ls https://github.com/upx/upx/releases/download/v${upx_version}/upx-${upx_version}-amd64_linux.tar.xz -o - | tar xvJf - -C /tmp && \
+  cp /tmp/upx-${upx_version}-amd64_linux/upx /usr/local/bin/ && \
+  chmod +x /usr/local/bin/upx 
+
+RUN /usr/local/bin/upx -9 /go/src/github.com/xindalcy/frp/bin/frps
 
 FROM scratch
 COPY --from=builder /go/src/github.com/xindalcy/frp/bin/frps /go/bin/frps
