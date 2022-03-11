@@ -1,4 +1,4 @@
-// Copyright 2019 fatedier, fatedier@gmail.com
+// Copyright 2019 fatedier, xinda@xinda.im
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,8 +17,8 @@ package proxy
 import (
 	"fmt"
 
-	"github.com/fatedier/frp/pkg/config"
-	"github.com/fatedier/frp/pkg/msg"
+	"github.com/xinda/desk/pkg/config"
+	"github.com/xinda/desk/pkg/msg"
 
 	"github.com/fatedier/golib/errors"
 )
@@ -35,7 +35,7 @@ func (pxy *XTCPProxy) Run() (remoteAddr string, err error) {
 
 	if pxy.rc.NatHoleController == nil {
 		xl.Error("udp port for xtcp is not specified.")
-		err = fmt.Errorf("xtcp is not supported in frps")
+		err = fmt.Errorf("xtcp is not supported in ydrds")
 		return
 	}
 	sidCh := pxy.rc.NatHoleController.ListenClient(pxy.GetName(), pxy.cfg.Sk)

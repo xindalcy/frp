@@ -1,4 +1,4 @@
-// Copyright 2016 fatedier, fatedier@gmail.com
+// Copyright 2016 fatedier, xinda@xinda.im
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -60,7 +60,7 @@ var (
 	}
 )
 
-// When frpc start, client send this message to login to server.
+// When ydrdc start, client send this message to login to server.
 type Login struct {
 	Version      string            `json:"version"`
 	Hostname     string            `json:"hostname"`
@@ -83,7 +83,7 @@ type LoginResp struct {
 	Error         string `json:"error"`
 }
 
-// When frpc login success, send this message to frps for running a new proxy.
+// When ydrdc login success, send this message to frps for running a new proxy.
 type NewProxy struct {
 	ProxyName      string            `json:"proxy_name"`
 	ProxyType      string            `json:"proxy_type"`

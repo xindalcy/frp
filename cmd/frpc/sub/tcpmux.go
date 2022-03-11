@@ -21,8 +21,8 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/fatedier/frp/pkg/config"
-	"github.com/fatedier/frp/pkg/consts"
+	"github.com/xinda/desk/pkg/config"
+	"github.com/xinda/desk/pkg/consts"
 )
 
 func init() {
@@ -42,7 +42,7 @@ func init() {
 
 var tcpMuxCmd = &cobra.Command{
 	Use:   "tcpmux",
-	Short: "Run frpc with a single tcpmux proxy",
+	Short: "Run ydrdc with a single tcpmux proxy",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		clientCfg, err := parseClientCommonCfgFromCmd()
 		if err != nil {

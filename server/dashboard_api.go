@@ -1,4 +1,4 @@
-// Copyright 2017 fatedier, fatedier@gmail.com
+// Copyright 2017 fatedier, xinda@xinda.im
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,11 +18,11 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/fatedier/frp/pkg/config"
-	"github.com/fatedier/frp/pkg/consts"
-	"github.com/fatedier/frp/pkg/metrics/mem"
-	"github.com/fatedier/frp/pkg/util/log"
-	"github.com/fatedier/frp/pkg/util/version"
+	"github.com/xinda/desk/pkg/config"
+	"github.com/xinda/desk/pkg/consts"
+	"github.com/xinda/desk/pkg/metrics/mem"
+	"github.com/xinda/desk/pkg/util/log"
+	"github.com/xinda/desk/pkg/util/version"
 
 	"github.com/gorilla/mux"
 )

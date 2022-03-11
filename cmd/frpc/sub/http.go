@@ -1,4 +1,4 @@
-// Copyright 2018 fatedier, fatedier@gmail.com
+// Copyright 2018 fatedier, xinda@xinda.im
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,8 +19,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/fatedier/frp/pkg/config"
-	"github.com/fatedier/frp/pkg/consts"
+	"github.com/xinda/desk/pkg/config"
+	"github.com/xinda/desk/pkg/consts"
 
 	"github.com/spf13/cobra"
 )
@@ -45,7 +45,7 @@ func init() {
 
 var httpCmd = &cobra.Command{
 	Use:   "http",
-	Short: "Run frpc with a single http proxy",
+	Short: "Run ydrdc with a single http proxy",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		clientCfg, err := parseClientCommonCfgFromCmd()
 		if err != nil {

@@ -1,4 +1,4 @@
-// Copyright 2019 fatedier, fatedier@gmail.com
+// Copyright 2019 fatedier, xinda@xinda.im
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,11 +19,11 @@ import (
 	"net"
 	"strings"
 
-	"github.com/fatedier/frp/pkg/config"
-	frpNet "github.com/fatedier/frp/pkg/util/net"
-	"github.com/fatedier/frp/pkg/util/util"
-	"github.com/fatedier/frp/pkg/util/vhost"
-	"github.com/fatedier/frp/server/metrics"
+	"github.com/xinda/desk/pkg/config"
+	frpNet "github.com/xinda/desk/pkg/util/net"
+	"github.com/xinda/desk/pkg/util/util"
+	"github.com/xinda/desk/pkg/util/vhost"
+	"github.com/xinda/desk/server/metrics"
 
 	frpIo "github.com/fatedier/golib/io"
 )

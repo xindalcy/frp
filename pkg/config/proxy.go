@@ -1,4 +1,4 @@
-// Copyright 2016 fatedier, fatedier@gmail.com
+// Copyright 2016 fatedier, xinda@xinda.im
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,8 +19,8 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/fatedier/frp/pkg/consts"
-	"github.com/fatedier/frp/pkg/msg"
+	"github.com/xinda/desk/pkg/consts"
+	"github.com/xinda/desk/pkg/msg"
 
 	"gopkg.in/ini.v1"
 )
@@ -451,7 +451,7 @@ func (cfg *DomainConf) checkForSvr(serverCfg ServerCommonConf) (err error) {
 
 	if cfg.SubDomain != "" {
 		if serverCfg.SubDomainHost == "" {
-			return fmt.Errorf("subdomain is not supported because this feature is not enabled in remote frps")
+			return fmt.Errorf("subdomain is not supported because this feature is not enabled in remote ydrds")
 		}
 		if strings.Contains(cfg.SubDomain, ".") || strings.Contains(cfg.SubDomain, "*") {
 			return fmt.Errorf("'.' and '*' is not supported in subdomain")

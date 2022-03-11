@@ -1,4 +1,4 @@
-// Copyright 2020 fatedier, fatedier@gmail.com
+// Copyright 2020 fatedier, xinda@xinda.im
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,9 +15,9 @@
 package aggregate
 
 import (
-	"github.com/fatedier/frp/pkg/metrics/mem"
-	"github.com/fatedier/frp/pkg/metrics/prometheus"
-	"github.com/fatedier/frp/server/metrics"
+	"github.com/xinda/desk/pkg/metrics/mem"
+	"github.com/xinda/desk/pkg/metrics/prometheus"
+	"github.com/xinda/desk/server/metrics"
 )
 
 // EnableMem start to mark metrics to memory monitor system.

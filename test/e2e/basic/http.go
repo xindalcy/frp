@@ -6,11 +6,11 @@ import (
 	"net/url"
 	"strconv"
 
-	"github.com/fatedier/frp/test/e2e/framework"
-	"github.com/fatedier/frp/test/e2e/framework/consts"
-	"github.com/fatedier/frp/test/e2e/mock/server/httpserver"
-	"github.com/fatedier/frp/test/e2e/pkg/request"
-	"github.com/fatedier/frp/test/e2e/pkg/utils"
+	"github.com/xinda/desk/test/e2e/framework"
+	"github.com/xinda/desk/test/e2e/framework/consts"
+	"github.com/xinda/desk/test/e2e/mock/server/httpserver"
+	"github.com/xinda/desk/test/e2e/pkg/request"
+	"github.com/xinda/desk/test/e2e/pkg/utils"
 
 	"github.com/gorilla/websocket"
 	. "github.com/onsi/ginkgo"
@@ -236,7 +236,7 @@ var _ = Describe("[Feature: HTTP]", func() {
 			RequestModify(func(r *request.Request) {
 				r.HTTP().HTTPHost("normal.example.com")
 			}).
-			ExpectResp([]byte("frp")). // local http server will write this X-From-Where header to response body
+			ExpectResp([]byte("xinda.im")). // local http server will write this X-From-Where header to response body
 			Ensure()
 	})
 

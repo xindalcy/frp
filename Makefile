@@ -4,7 +4,7 @@ LDFLAGS := -s -w
 
 all: fmt build
 
-build: frps frpc
+build:ydrdsfrpc
 
 # compile assets into binary file
 file:
@@ -21,7 +21,9 @@ frps:
 
 frpc:
 	env CGO_ENABLED=0 go build -trimpath -ldflags "$(LDFLAGS)" -o bin/frpc ./cmd/frpc
-
+win:
+	env CGO_ENABLED=0 GOOS=windows  go build -trimpath -ldflags "$(LDFLAGS)" -o bin/ydrdc.exe ./cmd/frpc
+	env CGO_ENABLED=0 GOOS=windows  go build -trimpath -ldflags "$(LDFLAGS)" -o bin/ydrds.exe ./cmd/frps
 test: gotest
 
 gotest:
@@ -42,3 +44,5 @@ alltest: gotest e2e
 clean:
 	rm -f ./bin/frpc
 	rm -f ./bin/frps
+	rm -f ./bin/ydrds
+	rm -f ./bin/ydrdc

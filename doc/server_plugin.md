@@ -155,7 +155,7 @@ Heartbeat from frpc
 
 #### NewWorkConn
 
-New work connection received from frpc (RPC sent after `run_id` is matched with an existing frp connection)
+New work connection received from ydrdc (RPC sent after `run_id` is matched with an existing frp connection)
 
 ```
 {

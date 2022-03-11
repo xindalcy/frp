@@ -4,7 +4,7 @@
             <el-button type="primary" @click="fetchData">Refresh</el-button>
             <el-button type="primary" @click="uploadConfig">Upload</el-button>
         </el-row>
-        <el-input type="textarea" autosize v-model="textarea" placeholder="frpc configrue file, can not be empty..."></el-input>
+        <el-input type="textarea" autosize v-model="textarea" placeholder="ydrdc configrue file, can not be empty..."></el-input>
     </div>
 </template>
 
@@ -31,13 +31,13 @@
                 }).catch( err => {
                     this.$message({
                         showClose: true,
-                        message: 'Get configure content from frpc failed!',
+                        message: 'Get configure content from ydrdc failed!',
                         type: 'warning'
                     })
                 })
             },
             uploadConfig() {
-                this.$confirm('This operation will upload your frpc configure file content and hot reload it, do you want to continue?', 'Notice', {
+                this.$confirm('This operation will upload your ydrdc configure file content and hot reload it, do you want to continue?', 'Notice', {
                     confirmButtonText: 'Yes',
                     cancelButtonText: 'No',
                     type: 'warning'
@@ -64,14 +64,14 @@
                         }).catch(err => {
                             this.$message({
                                 showClose: true,
-                                message: 'Reload frpc configure file error, ' + err,
+                                message: 'Reload ydrdc configure file error, ' + err,
                                 type: 'warning'
                             })
                         })
                     }).catch(err => {
                         this.$message({
                             showClose: true,
-                            message: 'Put config to frpc and hot reload failed!',
+                            message: 'Put config to ydrdc and hot reload failed!',
                             type: 'warning'
                         })
                     })

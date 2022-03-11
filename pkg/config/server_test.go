@@ -17,8 +17,8 @@ package config
 import (
 	"testing"
 
-	"github.com/fatedier/frp/pkg/auth"
-	plugin "github.com/fatedier/frp/pkg/plugin/server"
+	"github.com/xinda/desk/pkg/auth"
+	plugin "github.com/xinda/desk/pkg/plugin/server"
 
 	"github.com/stretchr/testify/assert"
 )
@@ -137,7 +137,7 @@ func Test_LoadServerCommonConf(t *testing.T) {
 				TLSCertFile:       "server.crt",
 				TLSKeyFile:        "server.key",
 				TLSTrustedCaFile:  "ca.crt",
-				SubDomainHost:     "frps.com",
+				SubDomainHost:     "ydrds.com",
 				TCPMux:            true,
 				UDPPacketSize:     1509,
 

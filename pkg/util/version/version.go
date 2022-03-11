@@ -1,4 +1,4 @@
-// Copyright 2016 fatedier, fatedier@gmail.com
+// Copyright 2016 fatedier, xinda@xinda.im
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -49,7 +49,7 @@ func Minor(v string) int64 {
 // add every case there if server will not accept client's protocol and return false
 func Compat(client string) (ok bool, msg string) {
 	if LessThan(client, "0.18.0") {
-		return false, "Please upgrade your frpc version to at least 0.18.0"
+		return false, "Please upgrade your ydrdc version to at least 0.18.0"
 	}
 	return true, ""
 }

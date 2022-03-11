@@ -60,7 +60,7 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
-      # download binaries of frpc and frps
+      # download binaries of ydrdc and frps
       - name: Download binary of frpc
         uses: actions/download-artifact@v2
         with:

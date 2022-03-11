@@ -17,8 +17,8 @@ package config
 import (
 	"testing"
 
-	"github.com/fatedier/frp/pkg/consts"
 	"github.com/stretchr/testify/assert"
+	"github.com/xinda/desk/pkg/consts"
 
 	"gopkg.in/ini.v1"
 )
@@ -193,7 +193,7 @@ func Test_Proxy_UnmarshalFromIni(t *testing.T) {
 				HTTPPwd:           "admin",
 				HostHeaderRewrite: "example.com",
 				Headers: map[string]string{
-					"X-From-Where": "frp",
+					"X-From-Where": "xinda.im",
 				},
 			},
 		},

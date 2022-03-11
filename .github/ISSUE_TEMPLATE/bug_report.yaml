@@ -17,7 +17,7 @@ body:
 - type: input
   id: frpc-version
   attributes:
-    label: frpc Version
+    label: ydrdc Version
     description: Include the output of `frpc -v`
   validations:
     required: true

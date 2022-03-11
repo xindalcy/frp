@@ -2,7 +2,7 @@
 # frp
 
 [![Build Status](https://circleci.com/gh/fatedier/frp.svg?style=shield)](https://circleci.com/gh/fatedier/frp)
-[![GitHub release](https://img.shields.io/github/tag/fatedier/frp.svg?label=release)](https://github.com/fatedier/frp/releases)
+[![GitHub release](https://img.shields.io/github/tag/fatedier/frp.svg?label=release)](https://xinda.im//releases)
 
 [README](README.md) | [中文文档](README_zh.md)
 
@@ -40,7 +40,7 @@ frp also has a P2P connect mode.
         * [OIDC Authentication](#oidc-authentication)
     * [Encryption and Compression](#encryption-and-compression)
         * [TLS](#tls)
-    * [Hot-Reloading frpc configuration](#hot-reloading-frpc-configuration)
+    * [Hot-Reloading ydrdc configuration](#hot-reloading-frpc-configuration)
     * [Get proxy status from client](#get-proxy-status-from-client)
     * [Only allowing certain ports on the server](#only-allowing-certain-ports-on-the-server)
     * [Port Reuse](#port-reuse)
@@ -85,7 +85,7 @@ frp is under development. Try the latest release version in the `master` branch,
 
 ## Example Usage
 
-Firstly, download the latest programs from [Release](https://github.com/fatedier/frp/releases) page according to your operating system and architecture.
+Firstly, download the latest programs from [Release](https://xinda.im//releases) page according to your operating system and architecture.
 
 Put `frps` and `frps.ini` onto your server A with public IP.
 
@@ -384,7 +384,7 @@ Read the full example configuration files to find out even more features not des
 
 [Full configuration file for frps (Server)](./conf/frps_full.ini)
 
-[Full configuration file for frpc (Client)](./conf/frpc_full.ini)
+[Full configuration file for ydrdc (Client)](./conf/frpc_full.ini)
 
 ### Using Environment Variables
 
@@ -482,19 +482,19 @@ Enable dashboard first, then configure `enable_prometheus = true` in `frps.ini`.
 
 ### Authenticating the Client
 
-There are 2 authentication methods to authenticate frpc with frps. 
+There are 2 authentication methods to authenticate ydrdc with frps. 
 
 You can decide which one to use by configuring `authentication_method` under `[common]` in `frpc.ini` and `frps.ini`.
 
-Configuring `authenticate_heartbeats = true` under `[common]` will use the configured authentication method to add and validate authentication on every heartbeat between frpc and frps.
+Configuring `authenticate_heartbeats = true` under `[common]` will use the configured authentication method to add and validate authentication on every heartbeat between ydrdc and frps.
 
-Configuring `authenticate_new_work_conns = true` under `[common]` will do the same for every new work connection between frpc and frps.
+Configuring `authenticate_new_work_conns = true` under `[common]` will do the same for every new work connection between ydrdc and frps.
 
 #### Token Authentication
 
 When specifying `authentication_method = token` under `[common]` in `frpc.ini` and `frps.ini` - token based authentication will be used.
 
-Make sure to specify the same `token` in the `[common]` section in `frps.ini` and `frpc.ini` for frpc to pass frps validation
+Make sure to specify the same `token` in the `[common]` section in `frps.ini` and `frpc.ini` for ydrdc to pass frps validation
 
 #### OIDC Authentication
 
@@ -620,7 +620,7 @@ openssl x509 -req -days 365 \
 	-out server.crt
 ```
 
-* build frpc certificates：
+* build ydrdc certificates：
 ```
 openssl genrsa -out client.key 2048
 openssl req -new -sha256 -key client.key \
@@ -635,7 +635,7 @@ openssl x509 -req -days 365 \
 	-out client.crt
 ```
 
-### Hot-Reloading frpc configuration
+### Hot-Reloading ydrdc configuration
 
 The `admin_addr` and `admin_port` fields are required for enabling HTTP API:
 
@@ -691,7 +691,7 @@ Set `bandwidth_limit` in each proxy's configure to enable this feature. Supporte
 
 ### TCP Stream Multiplexing
 
-frp supports tcp stream multiplexing since v0.10.0 like HTTP2 Multiplexing, in which case all logic connections to the same frpc are multiplexed into the same TCP connection.
+frp supports tcp stream multiplexing since v0.10.0 like HTTP2 Multiplexing, in which case all logic connections to the same ydrdc are multiplexed into the same TCP connection.
 
 You can disable this feature by modify `frps.ini` and `frpc.ini`:
 
@@ -732,7 +732,7 @@ KCP mode uses UDP as the underlying transport. Using KCP in frp:
 
 ### Connection Pooling
 
-By default, frps creates a new frpc connection to the backend service upon a user request. With connection pooling, frps keeps a certain number of pre-established connections, reducing the time needed to establish a connection.
+By default, frps creates a new ydrdc connection to the backend service upon a user request. With connection pooling, frps keeps a certain number of pre-established connections, reducing the time needed to establish a connection.
 
 This feature is suitable for a large number of short connections.
 
@@ -818,7 +818,7 @@ local_port = 80
 custom_domains = test.example.com
 # Enable HTTP health check
 health_check_type = http
-# frpc will send a GET request to '/status'
+# ydrdc will send a GET request to '/status'
 # and expect an HTTP 2xx OK response
 health_check_url = /status
 health_check_timeout_s = 3
@@ -962,7 +962,7 @@ The only supported TCP port multiplexing method available at the moment is `http
 
 When setting `tcpmux_httpconnect_port` to anything other than 0 in frps under `[common]`, frps will listen on this port for HTTP CONNECT requests.
 
-The host of the HTTP CONNECT request will be used to match the proxy in frps. Proxy hosts can be configured in frpc by configuring `custom_domain` and / or `subdomain` under `type = tcpmux` proxies, when `multiplexer = httpconnect`.
+The host of the HTTP CONNECT request will be used to match the proxy in frps. Proxy hosts can be configured in ydrdc by configuring `custom_domain` and / or `subdomain` under `type = tcpmux` proxies, when `multiplexer = httpconnect`.
 
 For example:
 
@@ -1062,12 +1062,12 @@ Find more plugins in [gofrp/plugin](https://github.com/gofrp/plugin).
 
 Interested in getting involved? We would like to help you!
 
-* Take a look at our [issues list](https://github.com/fatedier/frp/issues) and consider sending a Pull Request to **dev branch**.
+* Take a look at our [issues list](https://xinda.im//issues) and consider sending a Pull Request to **dev branch**.
 * If you want to add a new feature, please create an issue first to describe the new feature, as well as the implementation approach. Once a proposal is accepted, create an implementation of the new features and submit it as a pull request.
 * Sorry for my poor English. Improvements for this document are welcome, even some typo fixes.
-* If you have great ideas, send an email to fatedier@gmail.com.
+* If you have great ideas, send an email to xinda@xinda.im.
 
-**Note: We prefer you to give your advise in [issues](https://github.com/fatedier/frp/issues), so others with a same question can search it quickly and we don't need to answer them repeatedly.**
+**Note: We prefer you to give your advise in [issues](https://xinda.im//issues), so others with a same question can search it quickly and we don't need to answer them repeatedly.**
 
 ## Donation
 
@@ -1085,4 +1085,4 @@ frp QQ group: 606194980
 
 ### PayPal
 
-Donate money by [PayPal](https://www.paypal.me/fatedier) to my account **fatedier@gmail.com**.
+Donate money by [PayPal](https://www.paypal.me/fatedier) to my account **xinda@xinda.im**.

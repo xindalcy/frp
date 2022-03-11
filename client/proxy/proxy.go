@@ -1,4 +1,4 @@
-// Copyright 2017 fatedier, fatedier@gmail.com
+// Copyright 2017 fatedier, xinda@xinda.im
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -26,13 +26,13 @@ import (
 	"sync"
 	"time"
 
-	"github.com/fatedier/frp/pkg/config"
-	"github.com/fatedier/frp/pkg/msg"
-	plugin "github.com/fatedier/frp/pkg/plugin/client"
-	"github.com/fatedier/frp/pkg/proto/udp"
-	"github.com/fatedier/frp/pkg/util/limit"
-	frpNet "github.com/fatedier/frp/pkg/util/net"
-	"github.com/fatedier/frp/pkg/util/xlog"
+	"github.com/xinda/desk/pkg/config"
+	"github.com/xinda/desk/pkg/msg"
+	plugin "github.com/xinda/desk/pkg/plugin/client"
+	"github.com/xinda/desk/pkg/proto/udp"
+	"github.com/xinda/desk/pkg/util/limit"
+	frpNet "github.com/xinda/desk/pkg/util/net"
+	"github.com/xinda/desk/pkg/util/xlog"
 
 	"github.com/fatedier/golib/errors"
 	frpIo "github.com/fatedier/golib/io"
@@ -638,7 +638,7 @@ func (pxy *SUDPProxy) InWorkConn(conn net.Conn, m *msg.StartWorkConn) {
 		close(sendCh)
 	}
 
-	// udp service <- frpc <- frps <- frpc visitor <- user
+	// udp service <- ydrdc <- frps <- ydrdc visitor <- user
 	workConnReaderFn := func(conn net.Conn, readCh chan *msg.UDPPacket) {
 		defer closeFn()
 
@@ -646,7 +646,7 @@ func (pxy *SUDPProxy) InWorkConn(conn net.Conn, m *msg.StartWorkConn) {
 			// first to check sudp proxy is closed or not
 			select {
 			case <-pxy.closeCh:
-				xl.Trace("frpc sudp proxy is closed")
+				xl.Trace("ydrdc sudp proxy is closed")
 				return
 			default:
 			}
@@ -666,7 +666,7 @@ func (pxy *SUDPProxy) InWorkConn(conn net.Conn, m *msg.StartWorkConn) {
 		}
 	}
 
-	// udp service -> frpc -> frps -> frpc visitor -> user
+	// udp service -> ydrdc -> frps -> ydrdc visitor -> user
 	workConnSenderFn := func(conn net.Conn, sendCh chan msg.Message) {
 		defer func() {
 			closeFn()
@@ -677,10 +677,10 @@ func (pxy *SUDPProxy) InWorkConn(conn net.Conn, m *msg.StartWorkConn) {
 		for rawMsg := range sendCh {
 			switch m := rawMsg.(type) {
 			case *msg.UDPPacket:
-				xl.Trace("frpc send udp package to frpc visitor, [udp local: %v, remote: %v], [tcp work conn local: %v, remote: %v]",
+				xl.Trace("ydrdc send udp package to ydrdc visitor, [udp local: %v, remote: %v], [tcp work conn local: %v, remote: %v]",
 					m.LocalAddr.String(), m.RemoteAddr.String(), conn.LocalAddr().String(), conn.RemoteAddr().String())
 			case *msg.Ping:
-				xl.Trace("frpc send ping message to frpc visitor")
+				xl.Trace("ydrdc send ping message to ydrdc visitor")
 			}
 
 			if errRet = msg.WriteMsg(conn, rawMsg); errRet != nil {
@@ -708,7 +708,7 @@ func (pxy *SUDPProxy) InWorkConn(conn net.Conn, m *msg.StartWorkConn) {
 					return
 				}
 			case <-pxy.closeCh:
-				xl.Trace("frpc sudp proxy is closed")
+				xl.Trace("ydrdc sudp proxy is closed")
 				return
 			}
 		}

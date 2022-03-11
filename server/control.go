@@ -1,4 +1,4 @@
-// Copyright 2017 fatedier, fatedier@gmail.com
+// Copyright 2017 fatedier, xinda@xinda.im
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -23,18 +23,18 @@ import (
 	"sync"
 	"time"
 
-	"github.com/fatedier/frp/pkg/auth"
-	"github.com/fatedier/frp/pkg/config"
-	"github.com/fatedier/frp/pkg/consts"
-	frpErr "github.com/fatedier/frp/pkg/errors"
-	"github.com/fatedier/frp/pkg/msg"
-	plugin "github.com/fatedier/frp/pkg/plugin/server"
-	"github.com/fatedier/frp/pkg/util/util"
-	"github.com/fatedier/frp/pkg/util/version"
-	"github.com/fatedier/frp/pkg/util/xlog"
-	"github.com/fatedier/frp/server/controller"
-	"github.com/fatedier/frp/server/metrics"
-	"github.com/fatedier/frp/server/proxy"
+	"github.com/xinda/desk/pkg/auth"
+	"github.com/xinda/desk/pkg/config"
+	"github.com/xinda/desk/pkg/consts"
+	frpErr "github.com/xinda/desk/pkg/errors"
+	"github.com/xinda/desk/pkg/msg"
+	plugin "github.com/xinda/desk/pkg/plugin/server"
+	"github.com/xinda/desk/pkg/util/util"
+	"github.com/xinda/desk/pkg/util/version"
+	"github.com/xinda/desk/pkg/util/xlog"
+	"github.com/xinda/desk/server/controller"
+	"github.com/xinda/desk/server/metrics"
+	"github.com/xinda/desk/server/proxy"
 
 	"github.com/fatedier/golib/control/shutdown"
 	"github.com/fatedier/golib/crypto"
@@ -225,7 +225,7 @@ func (ctl *Control) RegisterWorkConn(conn net.Conn) error {
 }
 
 // When frps get one user connection, we get one work connection from the pool and return it.
-// If no workConn available in the pool, send message to frpc to get one or more
+// If no workConn available in the pool, send message to ydrdc to get one or more
 // and wait until it is available.
 // return an error if wait timeout
 func (ctl *Control) GetWorkConn() (workConn net.Conn, err error) {
@@ -247,7 +247,7 @@ func (ctl *Control) GetWorkConn() (workConn net.Conn, err error) {
 		}
 		xl.Debug("get work connection from pool")
 	default:
-		// no work connections available in the poll, send message to frpc to get more
+		// no work connections available in the poll, send message to ydrdc to get more
 		if err = errors.PanicToError(func() {
 			ctl.sendCh <- &msg.ReqWorkConn{}
 		}); err != nil {

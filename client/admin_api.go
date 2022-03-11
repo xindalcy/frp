@@ -1,4 +1,4 @@
-// Copyright 2017 fatedier, fatedier@gmail.com
+// Copyright 2017 fatedier, xinda@xinda.im
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -22,9 +22,9 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/fatedier/frp/client/proxy"
-	"github.com/fatedier/frp/pkg/config"
-	"github.com/fatedier/frp/pkg/util/log"
+	"github.com/xinda/desk/client/proxy"
+	"github.com/xinda/desk/pkg/config"
+	"github.com/xinda/desk/pkg/util/log"
 )
 
 type GeneralResponse struct {
@@ -54,14 +54,14 @@ func (svr *Service) apiReload(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		res.Code = 400
 		res.Msg = err.Error()
-		log.Warn("reload frpc proxy config error: %s", res.Msg)
+		log.Warn("reload ydrdc proxy config error: %s", res.Msg)
 		return
 	}
 
 	if err = svr.ReloadConf(pxyCfgs, visitorCfgs); err != nil {
 		res.Code = 500
 		res.Msg = err.Error()
-		log.Warn("reload frpc proxy config error: %s", res.Msg)
+		log.Warn("reload ydrdc proxy config error: %s", res.Msg)
 		return
 	}
 	log.Info("success reload conf")
@@ -217,7 +217,7 @@ func (svr *Service) apiGetConfig(w http.ResponseWriter, r *http.Request) {
 
 	if svr.cfgFile == "" {
 		res.Code = 400
-		res.Msg = "frpc has no config file path"
+		res.Msg = "ydrdc has no config file path"
 		log.Warn("%s", res.Msg)
 		return
 	}
@@ -226,7 +226,7 @@ func (svr *Service) apiGetConfig(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		res.Code = 400
 		res.Msg = err.Error()
-		log.Warn("load frpc config file error: %s", res.Msg)
+		log.Warn("load ydrdc config file error: %s", res.Msg)
 		return
 	}
 
@@ -277,7 +277,7 @@ func (svr *Service) apiPutConfig(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		res.Code = 400
 		res.Msg = err.Error()
-		log.Warn("load frpc config file error: %s", res.Msg)
+		log.Warn("load ydrdc config file error: %s", res.Msg)
 		return
 	}
 	content := string(b)
@@ -315,7 +315,7 @@ func (svr *Service) apiPutConfig(w http.ResponseWriter, r *http.Request) {
 	err = ioutil.WriteFile(svr.cfgFile, []byte(content), 0644)
 	if err != nil {
 		res.Code = 500
-		res.Msg = fmt.Sprintf("write content to frpc config file error: %v", err)
+		res.Msg = fmt.Sprintf("write content to ydrdc config file error: %v", err)
 		log.Warn("%s", res.Msg)
 		return
 	}

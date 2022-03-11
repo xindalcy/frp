@@ -20,8 +20,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/fatedier/frp/pkg/auth"
-	"github.com/fatedier/frp/pkg/util/util"
+	"github.com/xinda/desk/pkg/auth"
+	"github.com/xinda/desk/pkg/util/util"
 
 	"gopkg.in/ini.v1"
 )
@@ -124,8 +124,8 @@ type ClientCommonConf struct {
 	// TLSServerName specifices the custom server name of tls certificate. By
 	// default, server name if same to ServerAddr.
 	TLSServerName string `ini:"tls_server_name" json:"tls_server_name"`
-	// By default, frpc will connect frps with first custom byte if tls is enabled.
-	// If DisableCustomTLSFirstByte is true, frpc will not send that custom byte.
+	// By default, ydrdc will connect frps with first custom byte if tls is enabled.
+	// If DisableCustomTLSFirstByte is true, ydrdc will not send that custom byte.
 	DisableCustomTLSFirstByte bool `ini:"disable_custom_tls_first_byte" json:"disable_custom_tls_first_byte"`
 	// HeartBeatInterval specifies at what interval heartbeats are sent to the
 	// server, in seconds. It is not recommended to change this value. By

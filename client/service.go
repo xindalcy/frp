@@ -1,4 +1,4 @@
-// Copyright 2017 fatedier, fatedier@gmail.com
+// Copyright 2017 fatedier, xinda@xinda.im
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -27,15 +27,15 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/fatedier/frp/assets"
-	"github.com/fatedier/frp/pkg/auth"
-	"github.com/fatedier/frp/pkg/config"
-	"github.com/fatedier/frp/pkg/msg"
-	"github.com/fatedier/frp/pkg/transport"
-	"github.com/fatedier/frp/pkg/util/log"
-	frpNet "github.com/fatedier/frp/pkg/util/net"
-	"github.com/fatedier/frp/pkg/util/version"
-	"github.com/fatedier/frp/pkg/util/xlog"
+	"github.com/xinda/desk/assets"
+	"github.com/xinda/desk/pkg/auth"
+	"github.com/xinda/desk/pkg/config"
+	"github.com/xinda/desk/pkg/msg"
+	"github.com/xinda/desk/pkg/transport"
+	"github.com/xinda/desk/pkg/util/log"
+	frpNet "github.com/xinda/desk/pkg/util/net"
+	"github.com/xinda/desk/pkg/util/version"
+	"github.com/xinda/desk/pkg/util/xlog"
 
 	fmux "github.com/hashicorp/yamux"
 )
@@ -142,7 +142,7 @@ func (svr *Service) keepControllerWorking() {
 	maxDelayTime := 20 * time.Second
 	delayTime := time.Second
 
-	// if frpc reconnect frps, we need to limit retry times in 1min
+	// if ydrdc reconnect frps, we need to limit retry times in 1min
 	// current retry logic is sleep 0s, 0s, 0s, 1s, 2s, 4s, 8s, ...
 	// when exceed 1min, we will reset delay and counts
 	cutoffTime := time.Now().Add(time.Minute)

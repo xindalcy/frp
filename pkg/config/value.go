@@ -49,7 +49,7 @@ func GetValues() *Values {
 }
 
 func RenderContent(in []byte) (out []byte, err error) {
-	tmpl, errRet := template.New("frp").Parse(string(in))
+	tmpl, errRet := template.New("xinda.im").Parse(string(in))
 	if errRet != nil {
 		err = errRet
 		return

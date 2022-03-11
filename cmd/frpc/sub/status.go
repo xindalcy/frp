@@ -1,4 +1,4 @@
-// Copyright 2018 fatedier, fatedier@gmail.com
+// Copyright 2018 fatedier, xinda@xinda.im
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -23,8 +23,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/fatedier/frp/client"
-	"github.com/fatedier/frp/pkg/config"
+	"github.com/xinda/desk/client"
+	"github.com/xinda/desk/pkg/config"
 
 	"github.com/rodaine/table"
 	"github.com/spf13/cobra"
@@ -45,7 +45,7 @@ var statusCmd = &cobra.Command{
 		}
 
 		if err = status(cfg); err != nil {
-			fmt.Printf("frpc get status error: %v\n", err)
+			fmt.Printf("ydrdc get status error: %v\n", err)
 			os.Exit(1)
 		}
 		return nil

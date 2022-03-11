@@ -17,8 +17,8 @@ package config
 import (
 	"testing"
 
-	"github.com/fatedier/frp/pkg/auth"
-	"github.com/fatedier/frp/pkg/consts"
+	"github.com/xinda/desk/pkg/auth"
+	"github.com/xinda/desk/pkg/consts"
 
 	"github.com/stretchr/testify/assert"
 )
@@ -453,7 +453,7 @@ func Test_LoadClientBasicConf(t *testing.T) {
 			HTTPPwd:           "admin",
 			HostHeaderRewrite: "example.com",
 			Headers: map[string]string{
-				"X-From-Where": "frp",
+				"X-From-Where": "xinda.im",
 			},
 		},
 		testUser + ".web02": &HTTPSProxyConf{
@@ -585,7 +585,7 @@ func Test_LoadClientBasicConf(t *testing.T) {
 						"plugin_crt_path":            "./server.crt",
 						"plugin_key_path":            "./server.key",
 						"plugin_host_header_rewrite": "127.0.0.1",
-						"plugin_header_X-From-Where": "frp",
+						"plugin_header_X-From-Where": "xinda.im",
 					},
 				},
 			},
@@ -603,7 +603,7 @@ func Test_LoadClientBasicConf(t *testing.T) {
 					PluginParams: map[string]string{
 						"plugin_local_addr":          "127.0.0.1:443",
 						"plugin_host_header_rewrite": "127.0.0.1",
-						"plugin_header_X-From-Where": "frp",
+						"plugin_header_X-From-Where": "xinda.im",
 					},
 				},
 			},

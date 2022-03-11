@@ -1,4 +1,4 @@
-// Copyright 2017 fatedier, fatedier@gmail.com
+// Copyright 2017 fatedier, xinda@xinda.im
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -24,12 +24,12 @@ import (
 	"sync"
 	"time"
 
-	"github.com/fatedier/frp/pkg/config"
-	"github.com/fatedier/frp/pkg/msg"
-	"github.com/fatedier/frp/pkg/proto/udp"
-	frpNet "github.com/fatedier/frp/pkg/util/net"
-	"github.com/fatedier/frp/pkg/util/util"
-	"github.com/fatedier/frp/pkg/util/xlog"
+	"github.com/xinda/desk/pkg/config"
+	"github.com/xinda/desk/pkg/msg"
+	"github.com/xinda/desk/pkg/proto/udp"
+	frpNet "github.com/xinda/desk/pkg/util/net"
+	"github.com/xinda/desk/pkg/util/util"
+	"github.com/xinda/desk/pkg/util/xlog"
 
 	"github.com/fatedier/golib/errors"
 	frpIo "github.com/fatedier/golib/io"
@@ -378,7 +378,7 @@ func (sv *SUDPVisitor) dispatcher() {
 	xl := xlog.FromContextSafe(sv.ctx)
 
 	for {
-		// loop for get frpc to frps tcp conn
+		// loop for get ydrdc to frps tcp conn
 		// setup worker
 		// wait worker to finished
 		// retry or exit
@@ -388,7 +388,7 @@ func (sv *SUDPVisitor) dispatcher() {
 			// if checkCloseCh is close, we will return, other case we will continue to reconnect
 			select {
 			case <-sv.checkCloseCh:
-				xl.Info("frpc sudp visitor proxy is closed")
+				xl.Info("ydrdc sudp visitor proxy is closed")
 				return
 			default:
 			}
@@ -417,7 +417,7 @@ func (sv *SUDPVisitor) worker(workConn net.Conn) {
 	wg.Add(2)
 	closeCh := make(chan struct{})
 
-	// udp service -> frpc -> frps -> frpc visitor -> user
+	// udp service -> ydrdc -> frps -> ydrdc visitor -> user
 	workConnReaderFn := func(conn net.Conn) {
 		defer func() {
 			conn.Close()
@@ -431,7 +431,7 @@ func (sv *SUDPVisitor) worker(workConn net.Conn) {
 				errRet error
 			)
 
-			// frpc will send heartbeat in workConn to frpc visitor for keeping alive
+			// ydrdc will send heartbeat in workConn to ydrdc visitor for keeping alive
 			conn.SetReadDeadline(time.Now().Add(60 * time.Second))
 			if rawMsg, errRet = msg.ReadMsg(conn); errRet != nil {
 				xl.Warn("read from workconn for user udp conn error: %v", errRet)
@@ -441,12 +441,12 @@ func (sv *SUDPVisitor) worker(workConn net.Conn) {
 			conn.SetReadDeadline(time.Time{})
 			switch m := rawMsg.(type) {
 			case *msg.Ping:
-				xl.Debug("frpc visitor get ping message from frpc")
+				xl.Debug("ydrdc visitor get ping message from ydrdc")
 				continue
 			case *msg.UDPPacket:
 				if errRet := errors.PanicToError(func() {
 					sv.readCh <- m
-					xl.Trace("frpc visitor get udp packet from workConn: %s", m.Content)
+					xl.Trace("ydrdc visitor get udp packet from workConn: %s", m.Content)
 				}); errRet != nil {
 					xl.Info("reader goroutine for udp work connection closed")
 					return
@@ -455,7 +455,7 @@ func (sv *SUDPVisitor) worker(workConn net.Conn) {
 		}
 	}
 
-	// udp service <- frpc <- frps <- frpc visitor <- user
+	// udp service <- ydrdc <- frps <- ydrdc visitor <- user
 	workConnSenderFn := func(conn net.Conn) {
 		defer func() {
 			conn.Close()
@@ -493,7 +493,7 @@ func (sv *SUDPVisitor) getNewVisitorConn() (net.Conn, error) {
 	xl := xlog.FromContextSafe(sv.ctx)
 	visitorConn, err := sv.ctl.connectServer()
 	if err != nil {
-		return nil, fmt.Errorf("frpc connect frps error: %v", err)
+		return nil, fmt.Errorf("ydrdc connect frps error: %v", err)
 	}
 
 	now := time.Now().Unix()
@@ -506,14 +506,14 @@ func (sv *SUDPVisitor) getNewVisitorConn() (net.Conn, error) {
 	}
 	err = msg.WriteMsg(visitorConn, newVisitorConnMsg)
 	if err != nil {
-		return nil, fmt.Errorf("frpc send newVisitorConnMsg to frps error: %v", err)
+		return nil, fmt.Errorf("ydrdc send newVisitorConnMsg to frps error: %v", err)
 	}
 
 	var newVisitorConnRespMsg msg.NewVisitorConnResp
 	visitorConn.SetReadDeadline(time.Now().Add(10 * time.Second))
 	err = msg.ReadMsgInto(visitorConn, &newVisitorConnRespMsg)
 	if err != nil {
-		return nil, fmt.Errorf("frpc read newVisitorConnRespMsg error: %v", err)
+		return nil, fmt.Errorf("ydrdc read newVisitorConnRespMsg error: %v", err)
 	}
 	visitorConn.SetReadDeadline(time.Time{})
 

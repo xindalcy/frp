@@ -1,4 +1,4 @@
-// Copyright 2018 fatedier, fatedier@gmail.com
+// Copyright 2018 fatedier, xinda@xinda.im
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -25,11 +25,11 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/fatedier/frp/client"
-	"github.com/fatedier/frp/pkg/auth"
-	"github.com/fatedier/frp/pkg/config"
-	"github.com/fatedier/frp/pkg/util/log"
-	"github.com/fatedier/frp/pkg/util/version"
+	"github.com/xinda/desk/client"
+	"github.com/xinda/desk/pkg/auth"
+	"github.com/xinda/desk/pkg/config"
+	"github.com/xinda/desk/pkg/util/log"
+	"github.com/xinda/desk/pkg/util/version"
 
 	"github.com/spf13/cobra"
 )
@@ -77,8 +77,8 @@ var (
 )
 
 func init() {
-	rootCmd.PersistentFlags().StringVarP(&cfgFile, "config", "c", "./frpc.ini", "config file of frpc")
-	rootCmd.PersistentFlags().BoolVarP(&showVersion, "version", "v", false, "version of frpc")
+	rootCmd.PersistentFlags().StringVarP(&cfgFile, "config", "c", "./ydrdc.ini", "config file of ydrdc")
+	rootCmd.PersistentFlags().BoolVarP(&showVersion, "version", "v", false, "version of ydrdc")
 
 	kcpDoneCh = make(chan struct{})
 }
@@ -92,12 +92,12 @@ func RegisterCommonFlags(cmd *cobra.Command) {
 	cmd.PersistentFlags().StringVarP(&logFile, "log_file", "", "console", "console or file path")
 	cmd.PersistentFlags().IntVarP(&logMaxDays, "log_max_days", "", 3, "log file reversed days")
 	cmd.PersistentFlags().BoolVarP(&disableLogColor, "disable_log_color", "", false, "disable log color in console")
-	cmd.PersistentFlags().BoolVarP(&tlsEnable, "tls_enable", "", false, "enable frpc tls")
+	cmd.PersistentFlags().BoolVarP(&tlsEnable, "tls_enable", "", false, "enable ydrdc tls")
 }
 
 var rootCmd = &cobra.Command{
-	Use:   "frpc",
-	Short: "frpc is the client of frp (https://github.com/fatedier/frp)",
+	Use:   "ydrdc",
+	Short: "ydrdc is the client of xinda (https://xinda.im/)",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		if showVersion {
 			fmt.Println(version.Full())

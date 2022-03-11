@@ -1,4 +1,4 @@
-// Copyright 2018 fatedier, fatedier@gmail.com
+// Copyright 2018 fatedier, xinda@xinda.im
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@ import (
 	"net"
 	"net/http"
 
-	frpNet "github.com/fatedier/frp/pkg/util/net"
+	frpNet "github.com/xinda/desk/pkg/util/net"
 
 	"github.com/gorilla/mux"
 )

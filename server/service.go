@@ -1,4 +1,4 @@
-// Copyright 2017 fatedier, fatedier@gmail.com
+// Copyright 2017 fatedier, xinda@xinda.im
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -26,27 +26,27 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/fatedier/frp/assets"
-	"github.com/fatedier/frp/pkg/auth"
-	"github.com/fatedier/frp/pkg/config"
-	modelmetrics "github.com/fatedier/frp/pkg/metrics"
-	"github.com/fatedier/frp/pkg/msg"
-	"github.com/fatedier/frp/pkg/nathole"
-	plugin "github.com/fatedier/frp/pkg/plugin/server"
-	"github.com/fatedier/frp/pkg/transport"
-	"github.com/fatedier/frp/pkg/util/log"
-	frpNet "github.com/fatedier/frp/pkg/util/net"
-	"github.com/fatedier/frp/pkg/util/tcpmux"
-	"github.com/fatedier/frp/pkg/util/util"
-	"github.com/fatedier/frp/pkg/util/version"
-	"github.com/fatedier/frp/pkg/util/vhost"
-	"github.com/fatedier/frp/pkg/util/xlog"
-	"github.com/fatedier/frp/server/controller"
-	"github.com/fatedier/frp/server/group"
-	"github.com/fatedier/frp/server/metrics"
-	"github.com/fatedier/frp/server/ports"
-	"github.com/fatedier/frp/server/proxy"
-	"github.com/fatedier/frp/server/visitor"
+	"github.com/xinda/desk/assets"
+	"github.com/xinda/desk/pkg/auth"
+	"github.com/xinda/desk/pkg/config"
+	modelmetrics "github.com/xinda/desk/pkg/metrics"
+	"github.com/xinda/desk/pkg/msg"
+	"github.com/xinda/desk/pkg/nathole"
+	plugin "github.com/xinda/desk/pkg/plugin/server"
+	"github.com/xinda/desk/pkg/transport"
+	"github.com/xinda/desk/pkg/util/log"
+	frpNet "github.com/xinda/desk/pkg/util/net"
+	"github.com/xinda/desk/pkg/util/tcpmux"
+	"github.com/xinda/desk/pkg/util/util"
+	"github.com/xinda/desk/pkg/util/version"
+	"github.com/xinda/desk/pkg/util/vhost"
+	"github.com/xinda/desk/pkg/util/xlog"
+	"github.com/xinda/desk/server/controller"
+	"github.com/xinda/desk/server/group"
+	"github.com/xinda/desk/server/metrics"
+	"github.com/xinda/desk/server/ports"
+	"github.com/xinda/desk/server/proxy"
+	"github.com/xinda/desk/server/visitor"
 
 	"github.com/fatedier/golib/net/mux"
 	fmux "github.com/hashicorp/yamux"
@@ -189,7 +189,7 @@ func NewService(cfg config.ServerCommonConf) (svr *Service, err error) {
 	ln = svr.muxer.DefaultListener()
 
 	svr.listener = ln
-	log.Info("frps tcp listen on %s", address)
+	log.Info("ydrds tcp listen on %s", address)
 
 	// Listen for accepting connections from client using kcp protocol.
 	if cfg.KCPBindPort > 0 {
@@ -199,7 +199,7 @@ func NewService(cfg config.ServerCommonConf) (svr *Service, err error) {
 			err = fmt.Errorf("Listen on kcp address udp %s error: %v", address, err)
 			return
 		}
-		log.Info("frps kcp listen on udp %s:%d", cfg.BindAddr, cfg.KCPBindPort)
+		log.Info("ydrds kcp listen on udp %s:%d", cfg.BindAddr, cfg.KCPBindPort)
 	}
 
 	// Listen for accepting connections from client using websocket protocol.

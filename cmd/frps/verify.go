@@ -18,7 +18,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/fatedier/frp/pkg/config"
+	"github.com/xinda/desk/pkg/config"
 
 	"github.com/spf13/cobra"
 )
@@ -47,7 +47,7 @@ var verifyCmd = &cobra.Command{
 			os.Exit(1)
 		}
 
-		fmt.Printf("frps: the configuration file %s syntax is ok\n", cfgFile)
+		fmt.Printf("ydrds: the configuration file %s syntax is ok\n", cfgFile)
 		return nil
 	},
 }

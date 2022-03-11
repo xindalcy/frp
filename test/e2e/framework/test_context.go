@@ -32,15 +32,15 @@ func RegisterCommonFlags(flags *flag.FlagSet) {
 	// Randomize specs as well as suites
 	config.GinkgoConfig.RandomizeAllSpecs = true
 
-	flags.StringVar(&TestContext.FRPClientPath, "frpc-path", "../../bin/frpc", "The frp client binary to use.")
-	flags.StringVar(&TestContext.FRPServerPath, "frps-path", "../../bin/frps", "The frp server binary to use.")
+	flags.StringVar(&TestContext.FRPClientPath, "ydrdc-path", "../../bin/frpc", "The frp client binary to use.")
+	flags.StringVar(&TestContext.FRPServerPath, "ydrds-path", "../../bin/frps", "The frp server binary to use.")
 	flags.StringVar(&TestContext.LogLevel, "log-level", "debug", "Log level.")
 	flags.BoolVar(&TestContext.Debug, "debug", false, "Enable debug mode to print detail info.")
 }
 
 func ValidateTestContext(t *TestContextType) error {
 	if t.FRPClientPath == "" || t.FRPServerPath == "" {
-		return fmt.Errorf("frpc and frps binary path can't be empty")
+		return fmt.Errorf("ydrdc and frps binary path can't be empty")
 	}
 	if _, err := os.Stat(t.FRPClientPath); err != nil {
 		return fmt.Errorf("load frpc-path error: %v", err)

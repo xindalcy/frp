@@ -1,4 +1,4 @@
-// Copyright 2016 fatedier, fatedier@gmail.com
+// Copyright 2016 fatedier, xinda@xinda.im
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,14 +18,14 @@ import (
 	"math/rand"
 	"time"
 
-	_ "github.com/fatedier/frp/assets/frpc"
-	"github.com/fatedier/frp/cmd/frpc/sub"
+	_ "github.com/xinda/desk/assets/frpc"
+	"github.com/xinda/desk/cmd/frpc/sub"
 
 	"github.com/fatedier/golib/crypto"
 )
 
 func main() {
-	crypto.DefaultSalt = "frp"
+	crypto.DefaultSalt = "xinda.im"
 	rand.Seed(time.Now().UnixNano())
 
 	sub.Execute()

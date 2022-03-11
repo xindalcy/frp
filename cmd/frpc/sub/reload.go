@@ -1,4 +1,4 @@
-// Copyright 2018 fatedier, fatedier@gmail.com
+// Copyright 2018 fatedier, xinda@xinda.im
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/fatedier/frp/pkg/config"
+	"github.com/xinda/desk/pkg/config"
 
 	"github.com/spf13/cobra"
 )
@@ -33,7 +33,7 @@ func init() {
 
 var reloadCmd = &cobra.Command{
 	Use:   "reload",
-	Short: "Hot-Reload frpc configuration",
+	Short: "Hot-Reload ydrdc configuration",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		cfg, _, _, err := config.ParseClientConfig(cfgFile)
 		if err != nil {
@@ -43,7 +43,7 @@ var reloadCmd = &cobra.Command{
 
 		err = reload(cfg)
 		if err != nil {
-			fmt.Printf("frpc reload error: %v\n", err)
+			fmt.Printf("ydrdc reload error: %v\n", err)
 			os.Exit(1)
 		}
 		fmt.Printf("reload success\n")

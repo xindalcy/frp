@@ -1,4 +1,4 @@
-// Copyright 2017 fatedier, fatedier@gmail.com
+// Copyright 2017 fatedier, xinda@xinda.im
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -23,13 +23,13 @@ import (
 	"sync"
 	"time"
 
-	"github.com/fatedier/frp/pkg/config"
-	"github.com/fatedier/frp/pkg/msg"
-	plugin "github.com/fatedier/frp/pkg/plugin/server"
-	frpNet "github.com/fatedier/frp/pkg/util/net"
-	"github.com/fatedier/frp/pkg/util/xlog"
-	"github.com/fatedier/frp/server/controller"
-	"github.com/fatedier/frp/server/metrics"
+	"github.com/xinda/desk/pkg/config"
+	"github.com/xinda/desk/pkg/msg"
+	plugin "github.com/xinda/desk/pkg/plugin/server"
+	frpNet "github.com/xinda/desk/pkg/util/net"
+	"github.com/xinda/desk/pkg/util/xlog"
+	"github.com/xinda/desk/server/controller"
+	"github.com/xinda/desk/server/metrics"
 
 	frpIo "github.com/fatedier/golib/io"
 )
@@ -92,7 +92,7 @@ func (pxy *BaseProxy) Close() {
 }
 
 // GetWorkConnFromPool try to get a new work connections from pool
-// for quickly response, we immediately send the StartWorkConn message to frpc after take out one from pool
+// for quickly response, we immediately send the StartWorkConn message to ydrdc after take out one from pool
 func (pxy *BaseProxy) GetWorkConnFromPool(src, dst net.Addr) (workConn net.Conn, err error) {
 	xl := xlog.FromContextSafe(pxy.ctx)
 	// try all connections from the pool

@@ -5,13 +5,13 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/fatedier/frp/pkg/transport"
-	"github.com/fatedier/frp/test/e2e/framework"
-	"github.com/fatedier/frp/test/e2e/framework/consts"
-	"github.com/fatedier/frp/test/e2e/mock/server/httpserver"
-	"github.com/fatedier/frp/test/e2e/mock/server/streamserver"
-	"github.com/fatedier/frp/test/e2e/pkg/port"
-	"github.com/fatedier/frp/test/e2e/pkg/request"
+	"github.com/xinda/desk/pkg/transport"
+	"github.com/xinda/desk/test/e2e/framework"
+	"github.com/xinda/desk/test/e2e/framework/consts"
+	"github.com/xinda/desk/test/e2e/mock/server/httpserver"
+	"github.com/xinda/desk/test/e2e/mock/server/streamserver"
+	"github.com/xinda/desk/test/e2e/pkg/port"
+	"github.com/xinda/desk/test/e2e/pkg/request"
 
 	. "github.com/onsi/ginkgo"
 )

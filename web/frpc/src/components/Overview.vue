@@ -62,7 +62,7 @@
               }).catch( err => {
                   this.$message({
                       showClose: true,
-                      message: 'Get status info from frpc failed!',
+                      message: 'Get status info from ydrdc failed!',
                       type: 'warning'
                     })
               })

@@ -5,8 +5,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/fatedier/frp/test/e2e/framework"
-	"github.com/fatedier/frp/test/e2e/pkg/request"
+	"github.com/xinda/desk/test/e2e/framework"
+	"github.com/xinda/desk/test/e2e/pkg/request"
 
 	. "github.com/onsi/ginkgo"
 )
@@ -19,7 +19,7 @@ var _ = Describe("[Feature: Cmd]", func() {
 	f := framework.NewDefaultFramework()
 
 	Describe("Verify", func() {
-		It("frps valid", func() {
+		It("ydrds valid", func() {
 			path := f.GenerateConfigFile(`
 			[common]
 			bind_addr = 0.0.0.0
@@ -29,7 +29,7 @@ var _ = Describe("[Feature: Cmd]", func() {
 			framework.ExpectNoError(err)
 			framework.ExpectTrue(strings.Contains(output, ConfigValidStr), "output: %s", output)
 		})
-		It("frps invalid", func() {
+		It("ydrds invalid", func() {
 			path := f.GenerateConfigFile(`
 			[common]
 			bind_addr = 0.0.0.0
@@ -39,7 +39,7 @@ var _ = Describe("[Feature: Cmd]", func() {
 			framework.ExpectNoError(err)
 			framework.ExpectTrue(!strings.Contains(output, ConfigValidStr), "output: %s", output)
 		})
-		It("frpc valid", func() {
+		It("ydrdc valid", func() {
 			path := f.GenerateConfigFile(`
 			[common]
 			server_addr = 0.0.0.0
@@ -49,7 +49,7 @@ var _ = Describe("[Feature: Cmd]", func() {
 			framework.ExpectNoError(err)
 			framework.ExpectTrue(strings.Contains(output, ConfigValidStr), "output: %s", output)
 		})
-		It("frpc invalid", func() {
+		It("ydrdc invalid", func() {
 			path := f.GenerateConfigFile(`
 			[common]
 			server_addr = 0.0.0.0

@@ -1,13 +1,13 @@
 package prometheus
 
 import (
-	"github.com/fatedier/frp/server/metrics"
+	"github.com/xinda/desk/server/metrics"
 
 	"github.com/prometheus/client_golang/prometheus"
 )
 
 const (
-	namespace       = "frp"
+	namespace       = "xinda.im"
 	serverSubsystem = "server"
 )
 
@@ -59,7 +59,7 @@ func newServerMetrics() *serverMetrics {
 			Namespace: namespace,
 			Subsystem: serverSubsystem,
 			Name:      "client_counts",
-			Help:      "The current client counts of frps",
+			Help:      "The current client counts of ydrds",
 		}),
 		proxyCount: prometheus.NewGaugeVec(prometheus.GaugeOpts{
 			Namespace: namespace,

@@ -18,9 +18,9 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/fatedier/frp/pkg/auth"
-	plugin "github.com/fatedier/frp/pkg/plugin/server"
-	"github.com/fatedier/frp/pkg/util/util"
+	"github.com/xinda/desk/pkg/auth"
+	plugin "github.com/xinda/desk/pkg/plugin/server"
+	"github.com/xinda/desk/pkg/util/util"
 
 	"github.com/go-playground/validator/v10"
 	"gopkg.in/ini.v1"
@@ -110,7 +110,7 @@ type ServerCommonConf struct {
 
 	// SubDomainHost specifies the domain that will be attached to sub-domains
 	// requested by the client when using Vhost proxying. For example, if this
-	// value is set to "frps.com" and the client requested the subdomain
+	// value is set to "ydrds.com" and the client requested the subdomain
 	// "test", the resulting URL would be "test.frps.com". By default, this
 	// value is "".
 	SubDomainHost string `ini:"subdomain_host" json:"subdomain_host"`
